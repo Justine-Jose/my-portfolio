@@ -12,6 +12,7 @@ export default function App() {
           <h1 className="text-2xl font-bold tracking-tight text-blue-600">Justine Jose</h1>
           <nav className="space-x-6 text-gray-700 text-sm md:text-base font-medium">
             <a href="#about" className="hover:text-blue-500">About</a>
+             <a href="#experience" className="hover:text-blue-500">Experience</a>
             <a href="#education" className="hover:text-blue-500">Education</a>
             <a href="#skills" className="hover:text-blue-500">Skills</a>
             <a href="#projects" className="hover:text-blue-500">Projects</a>
@@ -45,19 +46,39 @@ export default function App() {
         </p>
       </section>
 
+      {/* Experience */}
+      <section id="experience" className="max-w-4xl mx-auto py-16 px-6">
+        <h2 className="text-3xl font-semibold mb-6 text-blue-700">Experience</h2>
+
+        <div className="mb-8">
+          <h3 className="text-xl font-bold text-gray-800">Software Developer - DRD Communications & Software Pvt. Ltd.</h3>
+          <span className="text-gray-600 italic">August 2021 - Present</span>
+          <ul className="list-disc list-inside mt-2 text-gray-700">
+            <li>Developed and maintained dynamic web applications using <strong>PHP</strong> for server-side logic.</li>
+            <li>Built responsive, interactive user interfaces with <strong>JavaScript</strong>, <strong>Bootstrap</strong>, and <strong>AJAX</strong>.</li>
+            <li>Designed and implemented internal <strong>automation tools using Python</strong> to reduce manual effort in data processing and report generation.</li>
+            <li>Integrated APIs and worked with JSON data structures for seamless communication with external platforms.</li>
+            <li>Actively contributed to version control and code management using Git.</li>
+            <li>Worked in an Agile environment, closely collaborating with cross-functional teams for requirement analysis and delivery.</li>
+          </ul>
+        </div>
+      </section>
+
+
       {/* Education */}
       <section id="education" className="bg-white py-16 px-6 shadow-inner">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-semibold mb-6 text-blue-700">Education</h2>
           <ul className="space-y-6 text-gray-700">
             <li>
-              <p className="text-xl font-medium">B.Sc in Computer Science</p>
-              <p className="text-sm text-gray-500">Mahatma Gandhi University, Kerala - 2017</p>
+              <p className="text-xl font-medium">Master of Computer Applications (MCA)</p>
+              <p className="text-sm text-gray-500">Amal Jyothi College of Engineering</p>
+              <span className="italic">2016- 2021</span>
             </li>
-            <li>
+            {/* <li>
               <p className="text-xl font-medium">Higher Secondary - Computer Science</p>
               <p className="text-sm text-gray-500">Kerala State Board - 2014</p>
-            </li>
+            </li> */}
           </ul>
         </div>
       </section>
@@ -67,7 +88,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-semibold mb-6 text-blue-700">Skills</h2>
           <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center text-lg">
-            {["Python", "Django", "JavaScript", "React.js", "PostgreSQL", "HTML/CSS"].map(skill => (
+            {["Python", "Django", "JavaScript", "React.js", "Bootstrap", "HTML/CSS", "PHP", "SQL", "Git"].map(skill => (
               <li key={skill} className="bg-white rounded-xl py-3 px-5 shadow hover:shadow-md transition">{skill}</li>
             ))}
           </ul>
@@ -80,6 +101,14 @@ export default function App() {
           <h2 className="text-3xl font-semibold mb-6 text-blue-700">Projects</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {[
+              {
+                title: "UBOSS v5 - Unified Back Office Support System",
+                description: "Developed dynamic web modules using PHP, JavaScript, AJAX, and Bootstrap. Integrated third-party APIs for enhanced system operations and streamlined backend workflows. Collaborated on frontend components to improve user experience and internal process automation."
+              },
+              {
+                title: "Zen Broadband Notification Engine",
+                description: "Designed and developed a Python-based notification engine to handle real-time order updates from third-party APIs. Implemented API authentication, error handling, and retry mechanisms, improving system reliability. Optimized data parsing and processing (using requests & JSON) to improve throughput and reduce response time."
+              },
               {
                 title: "Job Tracker API",
                 description: "A Django + PostgreSQL API for managing job applications with search, filters, and authentication."
@@ -107,12 +136,12 @@ export default function App() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-semibold mb-4 text-blue-700">Contact</h2>
           <p className="text-gray-700 mb-4">Let's connect! Reach out for collaborations or job opportunities.</p>
-          <p className="text-lg font-medium mb-4">📧 justine@example.com</p>
+          <p className="text-lg font-medium mb-4">📧 justinejosepazhoor@gmail.com</p>
           <div className="flex justify-center space-x-6 text-2xl text-gray-700">
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-black">
+            <a href="https://github.com/Justine-Jose" target="_blank" rel="noopener noreferrer" className="hover:text-black">
               <FaGithub />
             </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">
+            <a href="https://www.linkedin.com/in/justine-jose-4454491a2/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">
               <FaLinkedin />
             </a>
           </div>
