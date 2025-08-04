@@ -1,36 +1,58 @@
-import React from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaGithub, FaLinkedin, FaMoon, FaSun } from "react-icons/fa";
 import { motion } from "framer-motion";
 import profilePic from "./assets/justine.jpeg";
 
 export default function App() {
+  const [theme, setTheme] = useState("dark"); // default to dark
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "light" ? "dark" : "light"));
+  };
   return (
-    <div className="font-sans text-gray-800 bg-gray-50 min-h-screen">
+    <div className="font-sans min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
       {/* Header */}
-      <header className="bg-white shadow sticky top-0 z-20">
+      <header className="bg-white dark:bg-gray-800 shadow sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight text-blue-600">Justine Jose</h1>
-          <nav className="space-x-6 text-gray-700 text-sm md:text-base font-medium">
-            <a href="#about" className="hover:text-blue-500">About</a>
-             <a href="#experience" className="hover:text-blue-500">Experience</a>
-            <a href="#education" className="hover:text-blue-500">Education</a>
-            <a href="#skills" className="hover:text-blue-500">Skills</a>
-            <a href="#projects" className="hover:text-blue-500">Projects</a>
-            <a href="#contact" className="hover:text-blue-500">Contact</a>
+          <h1 className="text-2xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
+            Justine Jose
+          </h1>
+          <nav className="space-x-6 text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium">
+            <a href="#about" className="hover:text-blue-500 dark:hover:text-blue-400">About</a>
+            <a href="#experience" className="hover:text-blue-500 dark:hover:text-blue-400">Experience</a>
+            <a href="#education" className="hover:text-blue-500 dark:hover:text-blue-400">Education</a>
+            <a href="#skills" className="hover:text-blue-500 dark:hover:text-blue-400">Skills</a>
+            <a href="#projects" className="hover:text-blue-500 dark:hover:text-blue-400">Projects</a>
+            <a href="#contact" className="hover:text-blue-500 dark:hover:text-blue-400">Contact</a>
           </nav>
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle Dark Mode"
+            className="text-xl hover:text-yellow-400 dark:hover:text-yellow-300"
+          >
+            {theme === "light" ? <FaMoon /> : <FaSun />}
+          </button>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="text-center py-16 bg-gradient-to-r from-blue-100 to-blue-200">
+      <section className="text-center py-16 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-gray-800 dark:to-gray-700">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
           <img src={profilePic} alt="Justine Jose" className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg" />
-          <h2 className="text-4xl font-bold text-blue-800 mb-2">Hi, I'm Justine 👋</h2>
-          <p className="text-lg max-w-xl mx-auto text-gray-700">
+          <h2 className="text-4xl font-bold text-blue-800 dark:text-blue-300 mb-2">Hi, I'm Justine 👋</h2>
+          <p className="text-lg max-w-xl mx-auto text-gray-700 dark:text-gray-300">
             Python Developer | Django Enthusiast | React Learner <br />
             3+ years building scalable web applications
           </p>
@@ -39,8 +61,8 @@ export default function App() {
 
       {/* About */}
       <section id="about" className="max-w-4xl mx-auto py-16 px-6">
-        <h2 className="text-3xl font-semibold mb-6 text-blue-700">About Me</h2>
-        <p className="text-lg leading-relaxed text-gray-700">
+        <h2 className="text-3xl font-semibold mb-6 text-blue-700 dark:text-blue-400">About Me</h2>
+        <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
           I'm a passionate software developer with 3+ years of experience in Python and Django.
           I love solving real-world problems using clean, scalable code. Currently exploring React and diving into full-stack projects.
         </p>
@@ -48,12 +70,11 @@ export default function App() {
 
       {/* Experience */}
       <section id="experience" className="max-w-4xl mx-auto py-16 px-6">
-        <h2 className="text-3xl font-semibold mb-6 text-blue-700">Experience</h2>
-
+        <h2 className="text-3xl font-semibold mb-6 text-blue-700 dark:text-blue-400">Experience</h2>
         <div className="mb-8">
-          <h3 className="text-xl font-bold text-gray-800">Software Developer - DRD Communications & Software Pvt. Ltd.</h3>
-          <span className="text-gray-600 italic">August 2021 - Present</span>
-          <ul className="list-disc list-inside mt-2 text-gray-700">
+          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">Software Developer - DRD Communications & Software Pvt. Ltd.</h3>
+          <span className="text-gray-600 dark:text-gray-400 italic">August 2021 - Present</span>
+          <ul className="list-disc list-inside mt-2 text-gray-700 dark:text-gray-300">
             <li>Developed and maintained dynamic web applications using <strong>PHP</strong> for server-side logic.</li>
             <li>Built responsive, interactive user interfaces with <strong>JavaScript</strong>, <strong>Bootstrap</strong>, and <strong>AJAX</strong>.</li>
             <li>Designed and implemented internal <strong>automation tools using Python</strong> to reduce manual effort in data processing and report generation.</li>
@@ -64,41 +85,36 @@ export default function App() {
         </div>
       </section>
 
-
       {/* Education */}
-      <section id="education" className="bg-white py-16 px-6 shadow-inner">
+      <section id="education" className="bg-white dark:bg-gray-800 py-16 px-6 shadow-inner">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-6 text-blue-700">Education</h2>
-          <ul className="space-y-6 text-gray-700">
+          <h2 className="text-3xl font-semibold mb-6 text-blue-700 dark:text-blue-400">Education</h2>
+          <ul className="space-y-6 text-gray-700 dark:text-gray-300">
             <li>
               <p className="text-xl font-medium">Master of Computer Applications (MCA)</p>
-              <p className="text-sm text-gray-500">Amal Jyothi College of Engineering</p>
-              <span className="italic">2016- 2021</span>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Amal Jyothi College of Engineering</p>
+              <span className="italic">2016 - 2021</span>
             </li>
-            {/* <li>
-              <p className="text-xl font-medium">Higher Secondary - Computer Science</p>
-              <p className="text-sm text-gray-500">Kerala State Board - 2014</p>
-            </li> */}
           </ul>
         </div>
       </section>
 
       {/* Skills */}
-      <section id="skills" className="bg-gray-100 py-16 px-6">
+      <section id="skills" className="bg-gray-100 dark:bg-gray-900 py-16 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-6 text-blue-700">Skills</h2>
+          <h2 className="text-3xl font-semibold mb-6 text-blue-700 dark:text-blue-400">Skills</h2>
           <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center text-lg">
             {["Python", "Django", "JavaScript", "React.js", "Bootstrap", "HTML/CSS", "PHP", "SQL", "Git"].map(skill => (
-              <li key={skill} className="bg-white rounded-xl py-3 px-5 shadow hover:shadow-md transition">{skill}</li>
+              <li key={skill} className="bg-white dark:bg-gray-700 rounded-xl py-3 px-5 shadow hover:shadow-md transition">{skill}</li>
             ))}
           </ul>
         </div>
       </section>
 
       {/* Projects */}
-      <section id="projects" className="bg-white py-16 px-6">
+      <section id="projects" className="bg-white dark:bg-gray-800 py-16 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-6 text-blue-700">Projects</h2>
+          <h2 className="text-3xl font-semibold mb-6 text-blue-700 dark:text-blue-400">Projects</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
@@ -121,10 +137,10 @@ export default function App() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.03 }}
-                className="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition"
+                className="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition"
               >
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-gray-700">{project.description}</p>
+                <p className="text-gray-700 dark:text-gray-300">{project.description}</p>
               </motion.div>
             ))}
           </div>
@@ -132,16 +148,16 @@ export default function App() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-16 px-6 bg-gray-100">
+      <section id="contact" className="py-16 px-6 bg-gray-100 dark:bg-gray-900">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-4 text-blue-700">Contact</h2>
-          <p className="text-gray-700 mb-4">Let's connect! Reach out for collaborations or job opportunities.</p>
+          <h2 className="text-3xl font-semibold mb-4 text-blue-700 dark:text-blue-400">Contact</h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-4">Let's connect! Reach out for collaborations or job opportunities.</p>
           <p className="text-lg font-medium mb-4">📧 justinejosepazhoor@gmail.com</p>
-          <div className="flex justify-center space-x-6 text-2xl text-gray-700">
-            <a href="https://github.com/Justine-Jose" target="_blank" rel="noopener noreferrer" className="hover:text-black">
+          <div className="flex justify-center space-x-6 text-2xl text-gray-700 dark:text-gray-300">
+            <a href="https://github.com/Justine-Jose" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white">
               <FaGithub />
             </a>
-            <a href="https://www.linkedin.com/in/justine-jose-4454491a2/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">
+            <a href="https://www.linkedin.com/in/justine-jose-4454491a2/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400">
               <FaLinkedin />
             </a>
           </div>
@@ -149,7 +165,7 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="text-center text-sm text-gray-500 py-6 border-t bg-white mt-8">
+      <footer className="text-center text-sm text-gray-500 dark:text-gray-400 py-6 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 mt-8">
         © {new Date().getFullYear()} Justine Jose. All rights reserved.
       </footer>
     </div>
