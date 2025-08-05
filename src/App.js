@@ -1,46 +1,63 @@
+// App.js (updated to include hamburger menu)
 import React, { useState, useEffect } from "react";
-import { FaGithub, FaLinkedin, FaMoon, FaSun } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaMoon, FaSun, FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import profilePic from "./assets/justine.jpeg";
 
 export default function App() {
-  const [theme, setTheme] = useState("dark"); // default to dark
+  const [theme, setTheme] = useState("dark");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
   const toggleTheme = () => {
     setTheme(prev => (prev === "light" ? "dark" : "light"));
   };
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const navLinks = (
+    <>
+      <a href="#about" className="hover:text-blue-500 dark:hover:text-blue-400 block md:inline">About</a>
+      <a href="#experience" className="hover:text-blue-500 dark:hover:text-blue-400 block md:inline">Experience</a>
+      <a href="#education" className="hover:text-blue-500 dark:hover:text-blue-400 block md:inline">Education</a>
+      <a href="#skills" className="hover:text-blue-500 dark:hover:text-blue-400 block md:inline">Skills</a>
+      <a href="#projects" className="hover:text-blue-500 dark:hover:text-blue-400 block md:inline">Projects</a>
+      <a href="#contact" className="hover:text-blue-500 dark:hover:text-blue-400 block md:inline">Contact</a>
+    </>
+  );
+
   return (
     <div className="font-sans min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
       {/* Header */}
       <header className="bg-white dark:bg-gray-800 shadow sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
-            Justine Jose
-          </h1>
-          <nav className="space-x-6 text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium">
-            <a href="#about" className="hover:text-blue-500 dark:hover:text-blue-400">About</a>
-            <a href="#experience" className="hover:text-blue-500 dark:hover:text-blue-400">Experience</a>
-            <a href="#education" className="hover:text-blue-500 dark:hover:text-blue-400">Education</a>
-            <a href="#skills" className="hover:text-blue-500 dark:hover:text-blue-400">Skills</a>
-            <a href="#projects" className="hover:text-blue-500 dark:hover:text-blue-400">Projects</a>
-            <a href="#contact" className="hover:text-blue-500 dark:hover:text-blue-400">Contact</a>
+          <h1 className="text-2xl font-bold tracking-tight text-blue-600 dark:text-blue-400">Justine Jose</h1>
+
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex space-x-6 text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium">
+            {navLinks}
           </nav>
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle Dark Mode"
-            className="text-xl hover:text-yellow-400 dark:hover:text-yellow-300"
-          >
-            {theme === "light" ? <FaMoon /> : <FaSun />}
-          </button>
+
+          {/* Theme + Hamburger */}
+          <div className="flex items-center space-x-4">
+            <button onClick={toggleTheme} aria-label="Toggle Dark Mode" className="text-xl hover:text-yellow-400 dark:hover:text-yellow-300">
+              {theme === "light" ? <FaMoon /> : <FaSun />}
+            </button>
+            <button onClick={toggleMenu} className="md:hidden text-xl">
+              {menuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden px-4 pb-4 space-y-2 text-gray-700 dark:text-gray-300 text-base font-medium">
+            {navLinks}
+          </div>
+        )}
       </header>
 
       {/* Hero */}
